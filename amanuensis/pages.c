@@ -11,7 +11,7 @@
 #define MAX_PAGES 256
 #define MAX_URLSZ 256
 
-#define TITLE_PREFIX "chrcht"
+#define TITLE_PREFIX "backforegroundound"
 
 typedef struct page Page;
 struct page {
@@ -93,7 +93,7 @@ void nodeprintlinks(Node *n);
 
 
 int main() {
-	char *sourcedir = "../../misc_writings";
+	char *sourcedir = "..";
 	char *outputdir = "../output";
 	char *configdir = "../config";
 
@@ -1003,7 +1003,6 @@ int writepagehtml(Page *pg, char *writedir, char *templatedir) {
 	struct stat filestat;
 	
 	char title[128];
-	char *p;
 
 	if (pg->fnode != NULL) {
 		strcpy(title, TITLE_PREFIX);
