@@ -1,0 +1,47 @@
+body { max-width: 512px; width: 100%;  background: #FFF;  color: #111; font-size: 12pt; padding: 0px 16px; margin: 0px; font-family: "Times New Roman", serif; }
+
+header { margin: 0px; padding: 0px; max-height: 100px;}
+header a { width: 512px; height: 100px;  background-image: url("header.png"); background-repeat: no-repeat; display: inline-block; margin: 0px;}
+header p { margin: 0px; padding: 0px; }
+
+nav { max-width: 100%; min-height: 2em; border-bottom: 1px solid #DDD; border-top: 1px solid #DDD; margin-top: 0px; }
+nav p { margin: 1ex 0ex; min-height: 2.5ex; }
+nav a { margin: 0px 0.4em; display: inline-block; white-space: nowrap; text-decoration: none; }
+nav a:hover { background: #000; color: #FFF; }
+nav .row3 { text-align: center;}
+nav .row2, nav .row4 { text-align: center; }
+nav .row5 { text-align: right; }
+nav .row1 a, nav .row5 a { color: #CCC; }
+nav .row2 a, nav .row4 a { color: #888; }
+
+main .subgraphbox { background: #FFF; margin: 3ex 0.5em; padding: 0ex 0.5em; border-left: 1px solid #DDD; }
+main .subgraphbox p { border-left: 1px solid black; }
+main .subgraphbox a { white-space: nowrap; display: inline-block; text-decoration: none; padding: 0px; margin: 0ex 0.4em; }
+
+.sg3 { color: #000 }
+.sg2 { color: #888 }
+.sg1 { color: #CCC }
+.sg0 { color: #E8E8E8 }
+
+main [id] a { text-decoration: none; color: #CCC; padding: 0ex 0.3em; margin: 0ex 0.2em; user-select: none; }
+main [id] a:hover { text-decoration: none; background: #000; color: #FFF; }
+main a { color: #000; text-decoration: underline 1px; }
+main a:hover { color: #FFF; background: #000; }
+main a[href*="//"] { color: #000; text-decoration: underline dotted 1px; }
+main a[href*="//"]:hover { color: #FFF; background: #000; }
+main img { max-width: 100%; height: auto; }
+main blockquote { max-width: 100%;  margin-left: 1.5em;  padding-left: 0.5em; border-left: 1px solid #444; }
+main blockquote * { max-width: 100%;  margin-top: 1ex; margin-bottom: 1ex; }
+main code { background: #FFF; border: 0.5px solid #EFEFEF; color: #000; margin: 0px 1px;  padding: 0px 2px; font-family: "Consolas", monospace; font-size: 78%; border-radius: 3px; }
+main pre { max-width: 100%;  background: #F8F8F8; margin: 10px 0px;  padding: 5px 5px; font-family: "Consolas", monospace; font-size: 71%; overflow: auto; border-radius: 3px; border: 1px solid #DDD; }
+main ul { margin-left: 1em;  padding-left: 1em; }
+main ul li { list-style-type: none; position: relative; margin: 4px 0px;}
+main li p { margin: 2px; }
+main ul li::before { position: absolute; top: -0.25ex; left: -0.7em; font-size: 1em; content: "-"; }
+
+footer { max-width: 100%; min-height: 2em; border-top: 1px solid #DDD; }
+footer p { line-height: 140%; }
+footer a { text-decoration: none; background: #EEE; white-space: nowrap; }
+
+.right { text-align: right; }
+.center { text-align: center; }
