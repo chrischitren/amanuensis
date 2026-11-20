@@ -7,7 +7,7 @@ header p { margin: 0px; padding: 0px; }
 nav { max-width: 100%; min-height: 2em; border-bottom: 1px solid #DDD; border-top: 1px solid #DDD; margin-top: 0px; }
 nav p { margin: 1ex 0ex; min-height: 2.5ex; }
 nav a { margin: 0px 0.4em; display: inline-block; white-space: nowrap; text-decoration: none; }
-nav a:hover { background: #000; color: #FFF; }
+nav a:hover { background: #000; color: #FFF !important; }
 nav .row3 { text-align: center;}
 nav .row2, nav .row4 { text-align: center; }
 nav .row5 { text-align: right; }
@@ -39,9 +39,11 @@ main ul li { list-style-type: none; position: relative; margin: 4px 0px;}
 main li p { margin: 2px; }
 main ul li::before { position: absolute; top: -0.25ex; left: -0.7em; font-size: 1em; content: "-"; }
 
-footer { max-width: 100%; min-height: 2em; border-top: 1px solid #DDD; }
-footer p { line-height: 140%; }
-footer a { text-decoration: none; background: #EEE; white-space: nowrap; }
+footer { max-width: 100%; min-height: 2em; border-top: 1px solid #DDD; color: #CCC; }
+footer p { line-height: 100%; display: inline-block; width: fit-content; }
+footer p.right { float: right; }
+footer a { color: #CCC; white-space: nowrap; }
+footer a:hover { text-decoration: none; color: #FFF; background: #000; }
 
 .right { text-align: right; }
 .center { text-align: center; }

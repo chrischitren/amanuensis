@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <sys/stat.h>
 
 #include "../monkdown/nodes.h"
@@ -11,7 +12,7 @@
 #define MAX_PAGES 256
 #define MAX_URLSZ 256
 
-#define TITLE_PREFIX "backforegroundound"
+#define TITLE_PREFIX "chrischitren"
 
 typedef struct page Page;
 struct page {
@@ -93,7 +94,7 @@ void nodeprintlinks(Node *n);
 
 
 int main() {
-	char *sourcedir = "..";
+	char *sourcedir = "../sources";
 	char *outputdir = "../output";
 	char *configdir = "../config";
 
@@ -407,7 +408,7 @@ int main() {
 		if (pagelist[i] != NULL) {
 			if (pagelist[i]->backlinks[0] == NULL
 					&& pagelist[i]->outlinks[0] == NULL) {
-				printf("\x1b[31m%s\x1b[0m ",
+				printf("\x1b[33m%s\x1b[0m ",
 						pagelist[i]->fnode->name);
 				pagefree(pagelist[i]);
 				pagelist[i] = NULL;
@@ -474,16 +475,16 @@ int main() {
 		printf("Loading completed with no warnings\n");
 	}
 	if (isolates > 0) {	
-		printf("\x1b[31m%d of %d pages were isolated"
+		printf("\x1b[33m%d of %d pages were isolated"
 					" and have been removed\x1b[0m\n",
 					isolates, numpages+isolates);
 	}
 	if (orphans > 0) {	
-		printf("\x1b[31m%d of %d pages are orphans\x1b[0m\n",
+		printf("\x1b[33m%d of %d pages are orphans\x1b[0m\n",
 					orphans, numpages);
 	}
 	if (deadends > 0) {	
-		printf("\x1b[31m%d of %d pages are dead ends\x1b[0m\n",
+		printf("\x1b[33m%d of %d pages are dead ends\x1b[0m\n",
 					deadends, numpages);
 	}
 
@@ -788,7 +789,7 @@ Page *createindexpage(Page *pglist[MAX_PAGES], int *warnings) {
 
 	makepagenav(p);
 	makepageheader(p);
-	
+	makepagefooter(p);
 	
 	return(p);
 }
@@ -942,52 +943,35 @@ int getpagesubgraph(Page *subgraph[MAX_PAGES], int d[MAX_PAGES], Page *pg) {
 }
 
 int makepagefooter(Page *pg) {
-	int i;
 	Node *nodefooter;
 	Node *nptr;
-	char namebuf[MAX_URLSZ];
-	char linkbuf[MAX_URLSZ];
-	char *emptymsg = "There are no pages that link here.";
-	char *notemptymsg = "Pages that link here: ";
-	char *p;
+	Node *nptr2;
+	char *url = "https://github.com/chrischitren/site";
+	char date[MAX_URLSZ];
+	time_t t = time(NULL);
+	struct tm ltm = *localtime(&t);
+
+	sprintf(date, "%d-%02d-%02d",
+			ltm.tm_year+1900, ltm.tm_mon+1, ltm.tm_mday);
 	
 	nodefooter = createnode("", 0, NULL, TYPE_MAXTYPE);
 	pg->nodefooter = nodefooter;
 
-	if (pg->backlinks[0] == NULL) {
-		createnode(emptymsg, strlen(emptymsg), nodefooter, TYPE_P);
-		return(0);
-	} else {	
-		nodefooter = createnode(notemptymsg, strlen(notemptymsg),
-					nodefooter, TYPE_P);
-	}
-
-	for (i = 0; i < MAX_PAGES; i++) {
-		if (pg->backlinks[i] != NULL) {
-			/* Make a name */
-			strcpy(namebuf, pg->backlinks[i]->fnode->name);
-			if ((p = strrchr(namebuf, '.')) != NULL) {
-				*p = '\0';
-			}
-			while ((p = strchr(namebuf, '_')) != NULL) {
-				*p = ' ';
-			}
-
-			/* TODO this ought to be stored in each Page methinks, since we
-			   keep needing it in various contexts and having to rebuild it
-			   every time... */
-			strcpy(linkbuf, pg->backlinks[i]->fnode->name);
-			if ((p = strrchr(linkbuf, '.')) != NULL) {
-				*p = '\0';
-			}
-			strcat(linkbuf, ".html");
-			
-			nptr = createnode(namebuf, strlen(namebuf), nodefooter, TYPE_A);
-			addattribute(nptr, "href", linkbuf, strlen(linkbuf));
-			nptr = createnode(" ", 1, nodefooter, TYPE_PLAIN);
-		}
-	}
+	nptr = createnode("", 0, nodefooter, TYPE_P);
+	nptr = createnode("top", 3, nptr, TYPE_A);
+	addattribute(nptr, "href", "#", 1);
 	
+	nptr = createnode("", 0, nodefooter, TYPE_P);
+	addattribute(nptr, "class", "right", 5);
+
+	createnode("Generated with ", strlen("Generated with "),
+						nptr, TYPE_PLAIN);
+	nptr2 = createnode("Amanuensis", strlen("Amanuensis"), nptr, TYPE_A);
+	addattribute(nptr2, "href", url, strlen(url));
+
+	createnode(" on ", 4, nptr, TYPE_PLAIN);
+	createnode(date, strlen(date), nptr, TYPE_PLAIN);
+		
 	return(0);
 }
 
