@@ -34,6 +34,8 @@ enum linktypes { LINKTYPE_WEB = 0, LINKTYPE_PAGE,
 
 /* WRITING */
 int writepagehtml(Page *pg, char *writedir, char *templatedir);
+	/* TODO main function should look for _template.html in config
+	   instead of writepagehtml hardcoding its location! */
 int copyfile(char *dest, char *src);
 
 /* INDEX PAGE: SUBGRAPHS */
@@ -94,7 +96,7 @@ void nodeprintlinks(Node *n);
 
 
 int main() {
-	char *sourcedir = "../sources";
+	char *inputdir = "../input";
 	char *outputdir = "../output";
 	char *configdir = "../config";
 
@@ -143,7 +145,7 @@ int main() {
 	printf("\n");
 	
 	/* Open the source directory */
-	fnode_sources = fnodeinit(NULL, sourcedir, FTYPE_DIR);
+	fnode_sources = fnodeinit(NULL, inputdir, FTYPE_DIR);
 	fnodebuildtree(fnode_sources, fnode_sources->path);
 	fnodeprint(fnode_sources, 0);
 	

@@ -4,7 +4,7 @@ Amanuensis is an idiosyncratic static site generator. When conditions are favora
 
 ## Overview
 
-Amanuensis is, for better or worse, mostly one C file, [`pages.c`](amanuensis/pages.c). It parses source files written in [Monkdown](https://github.com/chrischitren/monkdown), my ascetic dialect of Markdown.
+Amanuensis is, for better or worse, mostly one C file, [`pages.c`](src/pages.c). It parses source files written in [Monkdown](https://github.com/chrischitren/monkdown), my ascetic dialect of Markdown.
 
 To build a site, Amanuensis searches a source directory for `.md` files and parses these with Monkdown. It determines what pages are to be written, analyzes the structure of links among these pages, and finds attachments requested by them. It resolves broken links by assuming that every file has a unique name and searching the source directory.
 
@@ -16,12 +16,12 @@ Following a successful build, a flat, monolithic output directory is constructed
 
 ## Layout
 
-[`amanuensis`](amanuensis) contains the aforementioned `pages.c` which is essentially a sequence of commands. It also contains `fnodes` ("Filenodes") which defines some utilities for storing directory structures, searching for files, etc.
+[`src`](src) contains the aforementioned `pages.c` which is essentially a sequence of commands. It also contains `fnodes.c` which defines some utilities for storing directory structures, searching for files, etc.
 
 [`build`](build) contains the scripts [`compile.sh`](build/compile.sh), which is pretty self explanatory, and [`buildsite.sh`](build/buildsite.sh), which cleans up the output directory and executes the compiled binary to build the site.
 
 [`config`](config) contains the template file [`_template.html`](config/_template.html). The data in this file is used, but the file itself is kept outside of the subdirectory [`config/etc`](config/etc), the contents of which are to be present in the final site.
 
-[`sources`](sources) contains the input blob (`.md` files & attachments).
+[`input`](input) contains the input blob (`.md` files & attachments).
 
 [`output`](output) contains the output blob (`.html` files & attachments).
