@@ -24,4 +24,4 @@ Following a successful build, a flat, monolithic output directory is constructed
 
 [`input`](input) contains the input blob (`.md` files & attachments).
 
-[`output`](output) contains the output blob (`.html` files & attachments).
+The site is built in a directory called `output` which is not included in this repo.
