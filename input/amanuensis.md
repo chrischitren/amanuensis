@@ -1,6 +1,6 @@
 # Amanuensis
 
-[Amanuensis](https://github.com/chrischitren/site) is a static site generator. It is idiosyncratic and is best understood as a learning exercise, but it is used to generate this site, so make of that what you will.
+[Amanuensis](https://github.com/chrischitren/amanuensis) is a static site generator. It is idiosyncratic and is best understood as a learning exercise, but it is used to generate this site, so make of that what you will.
 
 ## Design
 

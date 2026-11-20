@@ -948,7 +948,7 @@ int makepagefooter(Page *pg) {
 	Node *nodefooter;
 	Node *nptr;
 	Node *nptr2;
-	char *url = "https://github.com/chrischitren/site";
+	char *url = "https://github.com/chrischitren/amanuensis";
 	char date[MAX_URLSZ];
 	time_t t = time(NULL);
 	struct tm ltm = *localtime(&t);
